@@ -1,8 +1,9 @@
 vim-g
 =====
 
-**vim-g** is a tiny plugin that allows you to perform a quick Google search directly from
-Vim. It opens a new browser window with results. **vim-g** uses Perl for url encoding.
+**vim-g** is a tiny plugin that allows you to perform a quick Google search
+directly from Vim. It opens a new browser window with results. **vim-g** uses
+Perl for url encoding.
 
 
 Installation
@@ -22,33 +23,58 @@ To lookup a word (or words) in Google use `G` command:
     :G hello
     :G start up
 
-`G` command can use a word under the cursor. Just move the cursor to a word and type the
-same command in the command line:
+`G` command can use a word under the cursor. Just move the cursor to the word
+and type the same command in the command line:
 
     :G
 
-Additionally, you can select words in the visual mode exactly in the same way. Just select
-words and type `:G`. You can also prepend your selection with more clues:
+Additionally, you can select words in the visual mode exactly in the same way.
+Just select words and type `:G`. You can also prepend your selection with more
+clues:
 
     :G function
     :G ruby
 
-There is also special command to prepend current filetype automatically named `Gf`:
+There is also a special command named `Gf` to prepend the current file type
+automatically:
 
     :Gf
     :Gf strpos
     :Gf function
 
+Moreover, you can use double quotes (`"`) to perform [phrase
+search](http://support.google.com/websearch/bin/answer.py?hl=en&answer=136861).
+Just enclose some words between quotation marks as you type.
+
+You can also use a standalone quotation mark as it has some extra meaning. It
+indicates that everything following it should be enclosed within quotation
+marks. In other words, **vim-g** will detect a standalone quotation mark, then
+threat it as an opening phrase and generate the closing mark.
+
+Examples:
+
+    :G "foo bar"
+    :Gf " help substitute
+    :G foo bar " something else
+
+What's even more interesting this feature works in the visual mode also!
+Therefore, you can perform a strict phrase search on selected words. Just select
+words and type:
+
+    :G "
+    :G " foo bar
+
 
 Configuration
 -------------
 
-There are just a few global variables (options) you may set in the *.vimrc* file.
+There are just a few global variables (options) you may set in the *.vimrc*
+file.
 
 * `g:vim_g_open_command`
 
-  Sets the command used to open the URL. In case of Ubuntu this could be `"xdg-open"` and
-  that is the default value:
+  Sets the command used to open the URL. In case of Ubuntu this could be
+  `"xdg-open"` and that is the default value:
 
         let g:vim_g_open_command = "xdg-open"
 
@@ -60,8 +86,8 @@ There are just a few global variables (options) you may set in the *.vimrc* file
 
 * `g:vim_g_query_url`
 
-  Sets the query URL. By default it points to Google of course, but you might want to
-  place your favorite search engine there:
+  Sets the query URL. By default it points to Google of course, but you might
+  want to place your favorite search engine there:
 
         let g:vim_g_query_url = "http://google.com/search?q="
 
@@ -69,5 +95,7 @@ There are just a few global variables (options) you may set in the *.vimrc* file
 License
 -------
 
-Copyright &copy; 2012 Szymon Wrozynski. Distributed under the same terms as Vim itself.
+Copyright &copy; 2012 Szymon Wrozynski. Distributed under the same terms as Vim
+itself.
+
 See `:help license`
